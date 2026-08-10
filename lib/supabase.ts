@@ -58,11 +58,13 @@ const LOCAL_STORAGE_KEY_REGS = 'dlh_registrations_data_v1';
 
 // Helper functions for Data Operations
 export async function getCourses(): Promise<Course[]> {
+  let coursesList: Course[] = [];
+
   if (supabase) {
     try {
       const { data, error } = await supabase.from('courses').select('*');
       if (!error && data && data.length > 0) {
-        return data as Course[];
+        coursesList = data as Course[];
       }
     } catch (e) {
       console.warn('Supabase query failed, falling back to local dataset', e);
@@ -70,19 +72,41 @@ export async function getCourses(): Promise<Course[]> {
   }
 
   // Client-side local storage fallback
-  if (typeof window !== 'undefined') {
+  if (coursesList.length === 0 && typeof window !== 'undefined') {
+    try {
+      localStorage.removeItem('dlh_courses_data_v1');
+      localStorage.removeItem('dlh_courses_data_v2');
+    } catch (err) {}
+
     const cached = localStorage.getItem(LOCAL_STORAGE_KEY_COURSES);
     if (cached) {
       try {
-        return JSON.parse(cached);
+        coursesList = JSON.parse(cached);
       } catch (err) {
         // ignore parse error
       }
     }
-    localStorage.setItem(LOCAL_STORAGE_KEY_COURSES, JSON.stringify(INITIAL_COURSES));
+    if (!coursesList || coursesList.length === 0) {
+      coursesList = INITIAL_COURSES;
+      localStorage.setItem(LOCAL_STORAGE_KEY_COURSES, JSON.stringify(INITIAL_COURSES));
+    }
   }
 
-  return INITIAL_COURSES;
+  if (coursesList.length === 0) {
+    coursesList = INITIAL_COURSES;
+  }
+
+  // Ensure latest Keerthy's Daycare And Kindergarten name & logo across any cached or DB rows
+  return coursesList.map(c => {
+    if (c.id === 'course-daycare' || c.shortcode === 'CARE' || c.name.toLowerCase().includes('keerthy') || c.name.toLowerCase().includes('daycare')) {
+      return {
+        ...c,
+        name: "Keerthy's Daycare And Kindergarten",
+        image_url: "/keerthys-daycare-logo.png"
+      };
+    }
+    return c;
+  });
 }
 
 export async function getRegistrations(): Promise<Registration[]> {

@@ -18,11 +18,15 @@ export default function CourseCard({ course, onLearnMore, onRegister }: CourseCa
     <div className="group bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col overflow-hidden hover:-translate-y-1">
       
       {/* Thumbnail Image & Badge */}
-      <div className="relative h-48 sm:h-52 overflow-hidden bg-slate-100">
+      <div className="relative h-48 sm:h-52 overflow-hidden bg-slate-50 flex items-center justify-center">
         <img
           src={course.image_url}
           alt={course.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className={`w-full h-full transition-transform duration-500 ${
+            course.image_url.includes('keerthy') || course.image_url.includes('logo')
+              ? 'object-contain p-5 bg-white group-hover:scale-105'
+              : 'object-cover group-hover:scale-105'
+          }`}
         />
         <div className="absolute top-3 left-3 flex gap-2">
           <span className="bg-slate-900/80 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-full border border-slate-700/50">
