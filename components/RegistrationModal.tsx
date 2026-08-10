@@ -16,20 +16,67 @@ export default function RegistrationModal({ course, onClose }: RegistrationModal
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<{ name?: string; phone?: string; email?: string }>({});
   const [registeredData, setRegisteredData] = useState<Registration | null>(null);
 
   if (!course) return null;
 
+  // AI Human Name Verification Helper
+  const isPlausibleHumanName = (inputName: string): boolean => {
+    const trimmed = inputName.trim();
+    if (trimmed.length < 2 || trimmed.length > 60) return false;
+    const nameRegex = /^[a-zA-Z\s\.\'\-]+$/;
+    if (!nameRegex.test(trimmed)) return false;
+    const lower = trimmed.toLowerCase();
+    if (/^(.)\1+$/.test(lower)) return false;
+    if (['asdf', 'qwerty', 'test', 'abcd', '1234', 'xyz'].some(spam => lower.includes(spam))) return false;
+    return true;
+  };
+
+  const formatTitleCase = (str: string): string => {
+    return str
+      .trim()
+      .split(/\s+/)
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const digitsOnly = e.target.value.replace(/\D/g, '').slice(0, 10);
+    setPhone(digitsOnly);
+    if (errors.phone) setErrors(prev => ({ ...prev, phone: undefined }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email || !phone) return;
+    const newErrors: { name?: string; phone?: string; email?: string } = {};
+
+    if (!isPlausibleHumanName(name)) {
+      newErrors.name = 'Please enter a valid student full name (letters only).';
+    }
+
+    if (phone.length !== 10) {
+      newErrors.phone = 'Please enter a valid 10-digit mobile number.';
+    }
+
+    if (!email || !email.includes('@')) {
+      newErrors.email = 'Please enter a valid email address.';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
 
     setLoading(true);
+    setErrors({});
+    const formattedName = formatTitleCase(name);
+
     try {
       const reg = await registerStudent({
-        student_name: name,
+        student_name: formattedName,
         email,
-        phone,
+        phone: `+91 ${phone}`,
         course_id: course.id,
         course_name: course.name,
         course_shortcode: course.shortcode,
@@ -91,23 +138,43 @@ export default function RegistrationModal({ course, onClose }: RegistrationModal
                   required
                   placeholder="e.g. Aarav Sharma"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent text-sm text-slate-900"
+                  onChange={(e) => {
+                    setName(e.target.value);
+                    if (errors.name) setErrors(prev => ({ ...prev, name: undefined }));
+                  }}
+                  className={`w-full px-4 py-3 rounded-xl border ${
+                    errors.name ? 'border-red-500 bg-red-50/30' : 'border-slate-300'
+                  } focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent text-sm text-slate-900`}
                 />
+                {errors.name && (
+                  <p className="text-[11px] font-semibold text-red-600 mt-1">{errors.name}</p>
+                )}
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                  Contact Phone / WhatsApp *
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1 flex items-center justify-between">
+                  <span>Contact Phone (10-Digit Mobile) *</span>
+                  <span className="text-[10px] text-slate-400 font-normal">{phone.length}/10 digits</span>
                 </label>
-                <input
-                  type="tel"
-                  required
-                  placeholder="e.g. +91 98765 43210"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent text-sm text-slate-900"
-                />
+                <div className="relative">
+                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-500 pointer-events-none">
+                    +91
+                  </span>
+                  <input
+                    type="tel"
+                    required
+                    maxLength={10}
+                    placeholder="9876543210"
+                    value={phone}
+                    onChange={handlePhoneChange}
+                    className={`w-full pl-12 pr-4 py-3 rounded-xl border ${
+                      errors.phone ? 'border-red-500 bg-red-50/30' : 'border-slate-300'
+                    } focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent text-sm font-mono text-slate-900 font-bold`}
+                  />
+                </div>
+                {errors.phone && (
+                  <p className="text-[11px] font-semibold text-red-600 mt-1">{errors.phone}</p>
+                )}
               </div>
 
               <div>
@@ -119,9 +186,17 @@ export default function RegistrationModal({ course, onClose }: RegistrationModal
                   required
                   placeholder="e.g. student@example.com"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent text-sm text-slate-900"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (errors.email) setErrors(prev => ({ ...prev, email: undefined }));
+                  }}
+                  className={`w-full px-4 py-3 rounded-xl border ${
+                    errors.email ? 'border-red-500 bg-red-50/30' : 'border-slate-300'
+                  } focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent text-sm text-slate-900`}
                 />
+                {errors.email && (
+                  <p className="text-[11px] font-semibold text-red-600 mt-1">{errors.email}</p>
+                )}
               </div>
 
               <div className="pt-2">

@@ -180,15 +180,29 @@ export async function registerStudent(input: {
     }
   }
 
-  // Fallback sequential ID generation logic matching YYYY-[SHORTCODE]-[001]
+  // Guaranteed unique sequential ID generation matching YYYY-[SHORTCODE]-[001]
   const currentRegs = await getRegistrations();
-  const sameCourseThisYear = currentRegs.filter(r => 
-    r.course_shortcode === shortcode && 
-    (r.created_at ? r.created_at.startsWith(currentYear) : true)
-  );
+  const existingIds = new Set(currentRegs.map(r => r.dlh_id ? r.dlh_id.toUpperCase() : ''));
 
-  const nextSerial = (sameCourseThisYear.length + 1).toString().padStart(3, '0');
-  const generatedDlhId = `${currentYear}-${shortcode}-${nextSerial}`;
+  const pattern = new RegExp(`^${currentYear}-${shortcode}-(\\d+)$`, 'i');
+  let maxSeq = 0;
+  for (const reg of currentRegs) {
+    if (reg.dlh_id) {
+      const match = reg.dlh_id.match(pattern);
+      if (match) {
+        const seq = parseInt(match[1], 10);
+        if (seq > maxSeq) maxSeq = seq;
+      }
+    }
+  }
+
+  let nextSeqNum = Math.max(maxSeq + 1, currentRegs.length + 1);
+  let candidateDlhId = `${currentYear}-${shortcode}-${nextSeqNum.toString().padStart(3, '0')}`;
+  
+  while (existingIds.has(candidateDlhId.toUpperCase())) {
+    nextSeqNum++;
+    candidateDlhId = `${currentYear}-${shortcode}-${nextSeqNum.toString().padStart(3, '0')}`;
+  }
 
   const newReg: Registration = {
     id: `reg-${Date.now()}`,
@@ -198,7 +212,7 @@ export async function registerStudent(input: {
     course_id: input.course_id,
     course_name: input.course_name,
     course_shortcode: shortcode,
-    dlh_id: generatedDlhId,
+    dlh_id: candidateDlhId,
     status: 'enrolled',
     created_at: new Date().toISOString()
   };
