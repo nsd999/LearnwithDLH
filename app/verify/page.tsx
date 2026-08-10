@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 import { CertificateTemplate } from '@/components/CertificateTemplate';
 import { getRegistrationByDlhId } from '@/lib/supabase';
 import { Registration } from '@/types';
-import { Award, Search, Download, CheckCircle, Clock, AlertTriangle, ShieldCheck, ArrowLeft, Loader2, Camera, Trash2, Sparkles } from 'lucide-react';
+import { Award, Search, Download, CheckCircle, Clock, AlertTriangle, ShieldCheck, ArrowLeft, Loader2, Camera, Trash2, Sparkles, Maximize2, X } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import Link from 'next/link';
@@ -21,6 +21,7 @@ function VerifyContent() {
   const [record, setRecord] = useState<Registration | null>(null);
   const [searched, setSearched] = useState(false);
   const [downloading, setDownloading] = useState(false);
+  const [enlargeModalOpen, setEnlargeModalOpen] = useState(false);
 
   // Optional Student Photo State & BG Removal
   const [studentPhoto, setStudentPhoto] = useState<string | null>(null);
@@ -111,12 +112,21 @@ function VerifyContent() {
         allowTaint: true,
         logging: false,
         backgroundColor: '#ffffff',
-        scrollX: 0,
-        scrollY: -window.scrollY, // Compensate for window scroll position
-        x: 0,
-        y: 0,
-        width: element.offsetWidth,
-        height: element.offsetHeight,
+        windowWidth: 1200,
+        windowHeight: 900,
+        onclone: (clonedDoc) => {
+          const certNode = clonedDoc.querySelector('#official-dlh-certificate-node') as HTMLElement;
+          if (certNode) {
+            certNode.style.width = '850px';
+            certNode.style.height = '600px';
+            certNode.style.minWidth = '850px';
+            certNode.style.minHeight = '600px';
+            certNode.style.transform = 'none';
+            certNode.style.margin = '0';
+            certNode.style.padding = '32px 32px 24px 32px';
+            certNode.style.boxSizing = 'border-box';
+          }
+        }
       });
 
       const imgData = canvas.toDataURL('image/png', 1.0);
@@ -207,9 +217,6 @@ function VerifyContent() {
                       No matching registration record exists for ID <strong>"{dlhIdInput}"</strong>.
                     </p>
                   </div>
-                  <p className="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl">
-                    Tip: Try searching sample test IDs like <code>2026-PHON-001</code> or <code>2026-HAND-042</code>.
-                  </p>
                 </div>
               ) : record.status === 'completed' ? (
                 /* Completed Certificate View */
@@ -314,15 +321,46 @@ function VerifyContent() {
                     </div>
                   )}
 
-                  {/* Render Live Certificate Component */}
-                  <CertificateTemplate
-                    ref={certRef}
-                    studentName={record.student_name}
-                    courseName={record.course_name || record.course_shortcode}
-                    dlhId={record.dlh_id}
-                    completionDate={record.completion_date || new Date().toISOString().split('T')[0]}
-                    studentPhotoUrl={studentPhoto}
-                  />
+                  {/* Mobile Preview Card (< sm screens) */}
+                  <div className="sm:hidden bg-white p-5 rounded-3xl border border-slate-200 shadow-md space-y-4 text-center">
+                    <div className="p-3.5 bg-amber-50 rounded-2xl border border-amber-200 inline-block">
+                      <Award className="w-10 h-10 text-amber-600 mx-auto" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                        Official Certificate Verified
+                      </span>
+                      <h4 className="font-serif font-extrabold text-2xl text-slate-900 mt-2">
+                        {record.student_name}
+                      </h4>
+                      <p className="text-xs text-slate-600 mt-0.5">
+                        {record.course_name || record.course_shortcode}
+                      </p>
+                    </div>
+
+                    <div className="pt-2">
+                      <button
+                        type="button"
+                        onClick={() => setEnlargeModalOpen(true)}
+                        className="w-full py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2"
+                      >
+                        <Maximize2 className="w-4 h-4 text-amber-400" />
+                        View & Enlarge Full Certificate
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Render Full Desktop Certificate Component (Hidden on small mobile, visible on sm+) */}
+                  <div className="hidden sm:block">
+                    <CertificateTemplate
+                      ref={certRef}
+                      studentName={record.student_name}
+                      courseName={record.course_name || record.course_shortcode}
+                      dlhId={record.dlh_id}
+                      completionDate={record.completion_date || new Date().toISOString().split('T')[0]}
+                      studentPhotoUrl={studentPhoto}
+                    />
+                  </div>
                 </div>
               ) : (
                 /* Enrolled Status Card */
@@ -352,6 +390,62 @@ function VerifyContent() {
 
         </div>
       </main>
+
+      {/* Full Certificate Enlarged Modal for Mobile View */}
+      {enlargeModalOpen && record && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 bg-slate-950/90 backdrop-blur-md animate-fade-in">
+          <div className="relative bg-slate-900 rounded-3xl p-4 sm:p-6 shadow-2xl max-w-5xl w-full max-h-[95vh] overflow-y-auto space-y-4 text-center border border-slate-800">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+              <div className="flex items-center gap-2 text-white font-bold text-sm">
+                <Maximize2 className="w-4 h-4 text-amber-400" />
+                <span>Full Uncompressed Certificate View</span>
+              </div>
+              <button
+                onClick={() => setEnlargeModalOpen(false)}
+                className="p-2 rounded-full text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="overflow-x-auto py-2 flex justify-center">
+              <CertificateTemplate
+                studentName={record.student_name}
+                courseName={record.course_name || record.course_shortcode}
+                dlhId={record.dlh_id}
+                completionDate={record.completion_date || new Date().toISOString().split('T')[0]}
+                studentPhotoUrl={studentPhoto}
+              />
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+              <button
+                onClick={handleDownloadPDF}
+                disabled={downloading}
+                className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
+              >
+                {downloading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Generating PDF...
+                  </>
+                ) : (
+                  <>
+                    <Download className="w-4 h-4" />
+                    Download Official PDF
+                  </>
+                )}
+              </button>
+              <button
+                onClick={() => setEnlargeModalOpen(false)}
+                className="w-full sm:w-auto px-5 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-700"
+              >
+                Close View
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>

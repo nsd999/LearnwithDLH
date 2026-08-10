@@ -16,6 +16,7 @@ export const CertificateTemplate = forwardRef<HTMLDivElement, CertificateTemplat
     return (
       <div className="w-full overflow-x-auto flex justify-center p-2 sm:p-4 bg-slate-900/5 rounded-2xl">
         <div
+          id="official-dlh-certificate-node"
           ref={ref}
           className="relative w-[850px] h-[600px] bg-white text-slate-900 p-8 pt-6 flex flex-col justify-between shadow-2xl border-[12px] border-amber-600 rounded-none overflow-hidden select-none font-sans box-border"
           style={{

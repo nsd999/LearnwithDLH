@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { Registration, Course } from '@/types';
-import { getRegistrations, updateRegistrationStatus, getCourses, registerStudent } from '@/lib/supabase';
-import { Search, Filter, CheckCircle2, Clock, Download, RefreshCw, UserPlus, Shield, X, Mail, Phone, BookOpen } from 'lucide-react';
+import { getRegistrations, updateRegistrationStatus, getCourses, registerStudent, deleteRegistration } from '@/lib/supabase';
+import { Search, Filter, CheckCircle2, Clock, Download, RefreshCw, UserPlus, Shield, X, Mail, Phone, BookOpen, Trash2 } from 'lucide-react';
 
 export default function AdminRegistrationTable() {
   const [registrations, setRegistrations] = useState<Registration[]>([]);
@@ -64,6 +64,20 @@ export default function AdminRegistrationTable() {
       console.error('Error toggling status:', err);
     } finally {
       setUpdatingId(null);
+    }
+  };
+
+  const handleDelete = async (reg: Registration) => {
+    if (window.confirm(`Are you sure you want to delete enrollment record for "${reg.student_name}" (${reg.dlh_id})?`)) {
+      setUpdatingId(reg.id);
+      try {
+        await deleteRegistration(reg.id);
+        setRegistrations(prev => prev.filter(r => r.id !== reg.id));
+      } catch (err) {
+        console.error('Delete registration error:', err);
+      } finally {
+        setUpdatingId(null);
+      }
     }
   };
 
@@ -267,25 +281,36 @@ export default function AdminRegistrationTable() {
                       )}
                     </td>
 
-                    {/* Toggle Button */}
+                    {/* Action Column with Toggle & Delete */}
                     <td className="px-6 py-4 text-right">
-                      <button
-                        onClick={() => handleToggleStatus(reg)}
-                        disabled={updatingId === reg.id}
-                        className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl font-bold text-xs transition-all shadow-sm ${
-                          reg.status === 'completed'
-                            ? 'bg-slate-100 text-slate-700 hover:bg-amber-100 hover:text-amber-900 border border-slate-300'
-                            : 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-emerald-600/20'
-                        }`}
-                      >
-                        {updatingId === reg.id ? (
-                          <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-                        ) : reg.status === 'completed' ? (
-                          'Mark Enrolled'
-                        ) : (
-                          'Mark Completed'
-                        )}
-                      </button>
+                      <div className="flex items-center justify-end gap-2">
+                        <button
+                          onClick={() => handleToggleStatus(reg)}
+                          disabled={updatingId === reg.id}
+                          className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl font-bold text-xs transition-all shadow-sm ${
+                            reg.status === 'completed'
+                              ? 'bg-slate-100 text-slate-700 hover:bg-amber-100 hover:text-amber-900 border border-slate-300'
+                              : 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-emerald-600/20'
+                          }`}
+                        >
+                          {updatingId === reg.id ? (
+                            <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                          ) : reg.status === 'completed' ? (
+                            'Mark Enrolled'
+                          ) : (
+                            'Mark Completed'
+                          )}
+                        </button>
+
+                        <button
+                          onClick={() => handleDelete(reg)}
+                          disabled={updatingId === reg.id}
+                          title="Delete Registration"
+                          className="p-2 rounded-xl text-red-600 hover:bg-red-50 hover:border-red-300 border border-red-200 transition-colors"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
                     </td>
 
                   </tr>

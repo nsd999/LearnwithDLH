@@ -290,3 +290,26 @@ export async function getRegistrationByDlhId(dlhId: string): Promise<Registratio
   const match = allRegs.find(r => r.dlh_id.trim().toUpperCase() === cleanedId);
   return match || null;
 }
+
+export async function deleteRegistration(id: string): Promise<boolean> {
+  if (supabase) {
+    try {
+      const { error } = await supabase
+        .from('registrations')
+        .delete()
+        .eq('id', id);
+      if (!error) return true;
+    } catch (e) {
+      console.warn('Supabase delete error:', e);
+    }
+  }
+
+  if (typeof window !== 'undefined') {
+    const list = await getRegistrations();
+    const updated = list.filter(r => r.id !== id);
+    localStorage.setItem(LOCAL_STORAGE_KEY_REGS, JSON.stringify(updated));
+    return true;
+  }
+
+  return true;
+}

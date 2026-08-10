@@ -48,9 +48,29 @@ export default function RegistrationModal({ course, onClose }: RegistrationModal
     if (trimmed.length < 2 || trimmed.length > 60) return false;
     const nameRegex = /^[a-zA-Z\s\.\'\-]+$/;
     if (!nameRegex.test(trimmed)) return false;
+
     const lower = trimmed.toLowerCase();
-    if (/^(.)\1+$/.test(lower)) return false;
-    if (['asdf', 'qwerty', 'test', 'abcd', '1234', 'xyz'].some(spam => lower.includes(spam))) return false;
+    
+    // Check for repeated character sequences like "aaaa", "zzzz"
+    if (/(.)\1{2,}/.test(lower)) return false;
+
+    // Check for keyboard spam patterns
+    const spamPatterns = [
+      'asdf', 'qwerty', 'zxcv', 'jkl', 'fghj', 'ghjk', 'hjkl', 'dfgh',
+      'uiop', 'cvbn', 'vbnm', 'qwer', 'wert', 'erty', 'rtyu', 'tyui',
+      'yuio', 'iopa', 'sdfg', 'xcvb', 'test', 'demo', 'admin', 'user', 'abcd', 'xyz'
+    ];
+    if (spamPatterns.some(spam => lower.includes(spam))) return false;
+
+    // Check consonant clusters (4+ consonants in a row)
+    if (/[bcdfghjklmnpqrstvwxz]{4,}/.test(lower)) return false;
+
+    // Words of length >= 3 must contain at least one vowel
+    const words = lower.split(/\s+/);
+    for (const w of words) {
+      if (w.length >= 3 && !/[aeiouy]/.test(w)) return false;
+    }
+
     return true;
   };
 
