@@ -12,9 +12,11 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-md">
-                DLH
-              </div>
+              <img
+                src="/dlh-logo.png"
+                alt="Dheeru's Learner's Hub Logo"
+                className="w-10 h-10 object-contain"
+              />
               <span className="font-display font-extrabold text-xl text-white tracking-tight">
                 Dheeru's Learner's Hub
               </span>

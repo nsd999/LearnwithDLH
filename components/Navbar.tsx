@@ -15,9 +15,11 @@ export default function Navbar() {
           
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-blue-700 via-indigo-600 to-sky-500 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">
-              DLH
-            </div>
+            <img
+              src="/dlh-logo.png"
+              alt="Dheeru's Learner's Hub Logo"
+              className="w-11 h-11 object-contain group-hover:scale-105 transition-transform"
+            />
             <div>
               <span className="font-display font-extrabold text-xl tracking-tight text-slate-900 block leading-none">
                 Dheeru's Learner's Hub
