@@ -95,6 +95,29 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>© {new Date().getFullYear()} Dheeru's Learner's Hub & Keerthy Daycare. All rights reserved.</p>
+
+          {/* NSD Creations Branding */}
+          <a
+            href="https://tinyurl.com/nsd-creations"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2.5 hover:opacity-90 transition-opacity group"
+          >
+            <img
+              src="/nsd-creations-logo.png"
+              alt="NSD Creations Logo"
+              className="w-8 h-8 rounded-lg object-contain shadow-sm group-hover:scale-105 transition-transform"
+            />
+            <div className="text-left text-[11px] leading-tight">
+              <span className="text-slate-400 font-normal block">
+                Creatively Crafted by <strong className="text-slate-200 font-bold">NSD</strong>
+              </span>
+              <span className="text-slate-200 font-bold block">
+                Creations
+              </span>
+            </div>
+          </a>
+
           <div className="flex items-center gap-6">
             <Link href="/verify" className="hover:text-slate-300 transition-colors">Credential Search</Link>
             <Link href="/admin" className="hover:text-slate-300 transition-colors">Admin Portal</Link>
