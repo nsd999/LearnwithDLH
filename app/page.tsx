@@ -130,8 +130,8 @@ export default function HomePage() {
                     </div>
                   </div>
                   <img
-                    src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80"
-                    alt="Brain Gym and Yoga at DLH Hyderabad"
+                    src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80"
+                    alt="Brain Gym and Activity Learning at DLH Hyderabad"
                     className="rounded-2xl shadow-md w-full h-48 sm:h-60 object-cover"
                   />
                 </div>

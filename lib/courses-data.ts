@@ -165,7 +165,7 @@ export const INITIAL_COURSES: Course[] = [
     age_group: '6 - 15 Years',
     duration: '4 Weeks',
     schedule: 'Sat & Sun Batches',
-    image_url: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80',
+    image_url: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80',
     description: 'Nurture creative expression through structured storytelling, imaginative narrative building, vocabulary enrichment, and article writing.',
     why_join: [
       'Learn story structure: plot creation, character arcs, and expressive dialogue.',
@@ -227,7 +227,7 @@ export const INITIAL_COURSES: Course[] = [
     age_group: '6 - 16 Years & Adults',
     duration: '4 Weeks',
     schedule: 'Morning & Evening Sessions',
-    image_url: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80',
+    image_url: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80',
     description: 'Train your brain through Neurogym exercises, mindfulness meditation, anger management, and positive thinking routines for peak mental focus.',
     why_join: [
       'Activate both brain hemispheres through cross-lateral neurogym drills.',
