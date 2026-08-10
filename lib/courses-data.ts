@@ -164,15 +164,15 @@ export const INITIAL_COURSES: Course[] = [
   },
   {
     id: 'course-daycare',
-    name: 'Keerthy Kindergarten & Flexible Daycare',
+    name: "Keerthy's Daycare And Kindergarten",
     shortcode: 'CARE',
     category: 'Childcare',
     badge: 'Trusted Care',
     age_group: '6 Months - 10 Years',
     duration: 'Monthly / Hourly',
     schedule: 'Mon to Sat (8:30 AM - 7:30 PM)',
-    image_url: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=800&q=80',
-    description: 'Safe, hygienic, and nurturing daycare & pre-school facilities operating in tandem with DLH, featuring indoor play spaces, nutritious meal times, nap zones, and structured study sessions.',
+    image_url: '/keerthys-daycare-logo.png',
+    description: "Safe, hygienic, and nurturing daycare & pre-school facilities operating in tandem with DLH, featuring indoor play spaces, nutritious meal times, nap zones, and structured study sessions at Keerthy's Daycare And Kindergarten.",
     why_join: [
       'CCTV monitored, kid-safe spaces with trained, caring staff.',
       'Balanced daily routine: Free play, story hour, study help, meals, and rest.',
@@ -188,7 +188,7 @@ export const INITIAL_COURSES: Course[] = [
       {
         name: 'Madhavi Latha',
         role: 'Parent of Ishaan (Age 2)',
-        comment: 'As a working mother, Keerthy Daycare has been a blessing. Ishaan is so well cared for, healthy, and happy!',
+        comment: "As a working mother, Keerthy's Daycare And Kindergarten has been a blessing. Ishaan is so well cared for, healthy, and happy!",
         rating: 5
       }
     ]

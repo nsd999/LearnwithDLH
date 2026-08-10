@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: "Dheeru's Learner's Hub (DLH) — Phonics, Handwriting & Daycare in Champapet, Hyderabad",
-  description: "Dheeru's Learner's Hub offers Jolly Phonics, Cursive Handwriting, Spoken English, Brain Gym & Memory, Creative Arts, and Keerthy Daycare in Champapet, Hyderabad. Verified digital credentialing platform.",
-  keywords: ["Dheeru's Learner's Hub", "DLH Champapet", "Phonics classes Hyderabad", "Handwriting course Hyderabad", "Keerthy Daycare", "Kiranmayee Nalkari", "LMS", "Certificate verification"],
+  title: "Dheeru's Learner's Hub (DLH) — Phonics, Handwriting & Keerthy's Daycare And Kindergarten",
+  description: "Dheeru's Learner's Hub offers Jolly Phonics, Cursive Handwriting, Spoken English, Brain Gym & Memory, Creative Arts, and Keerthy's Daycare And Kindergarten in Champapet, Hyderabad. Verified digital credentialing platform.",
+  keywords: ["Dheeru's Learner's Hub", "DLH Champapet", "Phonics classes Hyderabad", "Handwriting course Hyderabad", "Keerthy's Daycare And Kindergarten", "Kiranmayee Nalkari", "LMS", "Certificate verification"],
   icons: {
     icon: '/icon.png',
     shortcut: '/favicon.ico',

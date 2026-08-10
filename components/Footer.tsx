@@ -12,17 +12,16 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <img
-                src="/dlh-logo.png"
-                alt="Dheeru's Learner's Hub Logo"
-                className="w-10 h-10 object-contain"
-              />
-              <span className="font-display font-extrabold text-xl text-white tracking-tight">
-                Dheeru's Learner's Hub
-              </span>
+              <div className="bg-white p-2 rounded-xl inline-block shadow-md">
+                <img
+                  src="/dlh-logo.png"
+                  alt="Dheeru's Learner's Hub Logo"
+                  className="h-12 w-auto object-contain"
+                />
+              </div>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Empowering learners of all ages through activity-based Phonics, Handwriting, Languages, Brain Gym, Creative Arts, and Daycare in Champapet, Hyderabad.
+              Empowering learners of all ages through activity-based Phonics, Handwriting, Languages, Brain Gym, Creative Arts, and Keerthy's Daycare And Kindergarten in Champapet, Hyderabad.
             </p>
             <div className="pt-2">
               <Link
@@ -46,7 +45,7 @@ export default function Footer() {
               <li><a href="#courses" className="hover:text-blue-400 transition-colors">Spoken English & Public Speaking</a></li>
               <li><a href="#courses" className="hover:text-blue-400 transition-colors">Brain Gym & Memory Techniques</a></li>
               <li><a href="#courses" className="hover:text-blue-400 transition-colors">Drawing & Acrylic Painting</a></li>
-              <li><a href="#courses" className="hover:text-blue-400 transition-colors">Keerthy Daycare & Preschool</a></li>
+              <li><a href="#courses" className="hover:text-blue-400 transition-colors">Keerthy's Daycare And Kindergarten</a></li>
             </ul>
           </div>
 
@@ -96,7 +95,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} Dheeru's Learner's Hub & Keerthy Daycare. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Dheeru's Learner's Hub & Keerthy's Daycare And Kindergarten. All rights reserved.</p>
 
           {/* NSD Creations Branding */}
           <div className="flex items-center gap-2 mt-2 md:mt-0 opacity-80 hover:opacity-100 transition-opacity">

@@ -71,7 +71,7 @@ export default function HomePage() {
                 </h2>
 
                 <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
-                  Founded in 2013 in <strong>Champapet, Hyderabad</strong>, <strong>Dheeru's Learner's Hub (DLH)</strong> operates alongside <strong>Keerthy's Kindergarten & Daycare</strong> to nurture young minds and adult learners alike.
+                  Founded in 2013 in <strong>Champapet, Hyderabad</strong>, <strong>Dheeru's Learner's Hub (DLH)</strong> operates alongside <strong>Keerthy's Daycare And Kindergarten</strong> to nurture young minds and adult learners alike.
                 </p>
 
                 <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
@@ -111,11 +111,13 @@ export default function HomePage() {
                     alt="Handwriting and Calligraphy at DLH Champapet"
                     className="rounded-2xl shadow-md w-full h-48 sm:h-60 object-cover"
                   />
-                  <div className="p-5 rounded-2xl bg-blue-900 text-white space-y-2">
-                    <div className="font-display font-bold text-xl">Keerthy Daycare</div>
-                    <div className="text-xs text-blue-200">
-                      Safe, wholesome daycare for kids 6 months+ with study time and indoor play.
-                    </div>
+                  <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2 text-center">
+                    <img
+                      src="/keerthys-daycare-logo.png"
+                      alt="Keerthy's Daycare And Kindergarten Logo"
+                      className="h-20 w-auto mx-auto object-contain"
+                    />
+                    <div className="font-display font-bold text-slate-900 text-sm">Keerthy's Daycare And Kindergarten</div>
                   </div>
                 </div>
 

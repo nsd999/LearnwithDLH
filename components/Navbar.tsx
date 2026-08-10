@@ -18,16 +18,8 @@ export default function Navbar() {
             <img
               src="/dlh-logo.png"
               alt="Dheeru's Learner's Hub Logo"
-              className="w-11 h-11 object-contain group-hover:scale-105 transition-transform"
+              className="h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform"
             />
-            <div>
-              <span className="font-display font-extrabold text-xl tracking-tight text-slate-900 block leading-none">
-                Dheeru's Learner's Hub
-              </span>
-              <span className="text-xs font-semibold text-blue-600 tracking-wide uppercase mt-1 block">
-                Champapet, Hyderabad
-              </span>
-            </div>
           </Link>
 
           {/* Desktop Navigation */}
