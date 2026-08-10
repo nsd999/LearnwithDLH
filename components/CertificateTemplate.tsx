@@ -8,10 +8,11 @@ interface CertificateTemplateProps {
   courseName: string;
   dlhId: string;
   completionDate: string;
+  studentPhotoUrl?: string | null;
 }
 
 export const CertificateTemplate = forwardRef<HTMLDivElement, CertificateTemplateProps>(
-  ({ studentName, courseName, dlhId, completionDate }, ref) => {
+  ({ studentName, courseName, dlhId, completionDate, studentPhotoUrl }, ref) => {
     return (
       <div className="w-full overflow-x-auto flex justify-center p-2 sm:p-4 bg-slate-900/5 rounded-2xl">
         <div
@@ -30,6 +31,22 @@ export const CertificateTemplate = forwardRef<HTMLDivElement, CertificateTemplat
           <div className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-amber-600 pointer-events-none" />
           <div className="absolute bottom-6 left-6 w-8 h-8 border-b-2 border-l-2 border-amber-600 pointer-events-none" />
           <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-amber-600 pointer-events-none" />
+
+          {/* Optional Student Photo Badge */}
+          {studentPhotoUrl && (
+            <div className="absolute top-7 right-10 z-20 flex flex-col items-center">
+              <div className="w-20 h-24 rounded-xl overflow-hidden border-2 border-amber-500 shadow-md bg-amber-50/40 p-1 flex items-center justify-center">
+                <img
+                  src={studentPhotoUrl}
+                  alt={studentName}
+                  className="w-full h-full object-cover object-top rounded-lg"
+                />
+              </div>
+              <span className="text-[8px] font-bold text-amber-700 uppercase tracking-widest mt-0.5">
+                VERIFIED LEARNER
+              </span>
+            </div>
+          )}
 
           {/* Header & Logo */}
           <div className="text-center relative z-10 space-y-2 pt-2">

@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 import { CertificateTemplate } from '@/components/CertificateTemplate';
 import { getRegistrationByDlhId } from '@/lib/supabase';
 import { Registration } from '@/types';
-import { Award, Search, Download, CheckCircle, Clock, AlertTriangle, ShieldCheck, ArrowLeft, Loader2 } from 'lucide-react';
+import { Award, Search, Download, CheckCircle, Clock, AlertTriangle, ShieldCheck, ArrowLeft, Loader2, Camera, Trash2, Sparkles } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import Link from 'next/link';
@@ -22,7 +22,58 @@ function VerifyContent() {
   const [searched, setSearched] = useState(false);
   const [downloading, setDownloading] = useState(false);
 
+  // Optional Student Photo State & BG Removal
+  const [studentPhoto, setStudentPhoto] = useState<string | null>(null);
+  const [processingPhoto, setProcessingPhoto] = useState(false);
+  const [photoMessage, setPhotoMessage] = useState<string | null>(null);
+
   const certRef = useRef<HTMLDivElement>(null);
+
+  const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setProcessingPhoto(true);
+    setPhotoMessage(null);
+
+    try {
+      // Call remove.bg API to strip background cleanly
+      const formData = new FormData();
+      formData.append('image_file', file);
+      formData.append('size', 'auto');
+
+      const res = await fetch('https://api.remove.bg/v1.0/removebg', {
+        method: 'POST',
+        headers: {
+          'X-Api-Key': 'tRVKq82y1jpdJkJJ8HDGRPqx',
+        },
+        body: formData,
+      });
+
+      if (!res.ok) {
+        throw new Error('Remove.bg API failed');
+      }
+
+      const blob = await res.blob();
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setStudentPhoto(reader.result as string);
+        setPhotoMessage('✨ Photo background removed cleanly via AI!');
+      };
+      reader.readAsDataURL(blob);
+    } catch (err) {
+      console.warn('Remove.bg API failed or quota reached, using raw uploaded photo', err);
+      // Fallback: load raw photo as data URL
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setStudentPhoto(reader.result as string);
+        setPhotoMessage('Photo attached successfully!');
+      };
+      reader.readAsDataURL(file);
+    } finally {
+      setProcessingPhoto(false);
+    }
+  };
 
   const handleSearch = async (queryId?: string) => {
     const query = (queryId || dlhIdInput).trim();
@@ -197,6 +248,72 @@ function VerifyContent() {
                     </button>
                   </div>
 
+                  {/* Optional Student Photo Upload Toolbar */}
+                  <div className="bg-white p-4 sm:p-5 rounded-3xl border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="flex items-center gap-3 text-left">
+                      <div className="p-2.5 bg-amber-100 text-amber-800 rounded-2xl flex-shrink-0">
+                        <Camera className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-extrabold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+                          <span>Personalize Certificate (Optional)</span>
+                          <span className="bg-amber-100 text-amber-800 text-[10px] px-2 py-0.5 rounded-full font-bold">
+                            AI Studio BG Removal
+                          </span>
+                        </div>
+                        <div className="text-xs text-slate-500 mt-0.5">
+                          {studentPhoto 
+                            ? 'Your transparent portrait photo has been embedded into the official certificate.' 
+                            : 'Optionally upload a portrait photo to strip background and feature on your digital certificate.'}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3 flex-shrink-0">
+                      {studentPhoto ? (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setStudentPhoto(null);
+                            setPhotoMessage(null);
+                          }}
+                          className="px-4 py-2 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 text-xs font-bold transition-colors flex items-center gap-1.5 border border-red-200"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                          Remove Photo
+                        </button>
+                      ) : (
+                        <label className="cursor-pointer px-4 py-2.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-2">
+                          {processingPhoto ? (
+                            <>
+                              <Loader2 className="w-4 h-4 animate-spin text-amber-400" />
+                              Removing BG...
+                            </>
+                          ) : (
+                            <>
+                              <Camera className="w-4 h-4 text-amber-400" />
+                              Upload Student Photo
+                            </>
+                          )}
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handlePhotoUpload}
+                            disabled={processingPhoto}
+                            className="hidden"
+                          />
+                        </label>
+                      )}
+                    </div>
+                  </div>
+
+                  {photoMessage && (
+                    <div className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-4 py-2.5 rounded-2xl border border-emerald-200 flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                      <span>{photoMessage}</span>
+                    </div>
+                  )}
+
                   {/* Render Live Certificate Component */}
                   <CertificateTemplate
                     ref={certRef}
@@ -204,6 +321,7 @@ function VerifyContent() {
                     courseName={record.course_name || record.course_shortcode}
                     dlhId={record.dlh_id}
                     completionDate={record.completion_date || new Date().toISOString().split('T')[0]}
+                    studentPhotoUrl={studentPhoto}
                   />
                 </div>
               ) : (
