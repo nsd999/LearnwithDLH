@@ -1,4 +1,9 @@
 export const DLH_PHONE_NUMBER = '919032708241';
+export const DLH_PHONE_NUMBER_FORMATTED = '+91 90327 08241';
+export const DLH_SECONDARY_PHONE_NUMBER = '916303849852';
+export const DLH_SECONDARY_PHONE_NUMBER_FORMATTED = '+91 63038 49852';
+export const DLH_EMAIL = 'dheeruslearnershub@gmail.com';
+export const DLH_GOOGLE_MAPS_LOCATION = 'https://share.google/MKr5T842njWACZG1Z';
 
 export interface WhatsAppApplicationParams {
   courseName: string;

@@ -332,7 +332,7 @@ export default function HomePage() {
                   Where is Dheeru's Learner's Hub located?
                 </h4>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  We are conveniently located in Champapet / Rakshapuram, Hyderabad, Telangana. Contact us at <strong>+91 90327 08241</strong> for exact directions.
+                  We are conveniently located in Champapet / Rakshapuram, Hyderabad, Telangana (<a href="https://share.google/MKr5T842njWACZG1Z" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-semibold hover:underline">View on Google Maps</a>). Contact us at <strong>+91 90327 08241 / +91 63038 49852</strong> or email <strong>dheeruslearnershub@gmail.com</strong>.
                 </p>
               </div>
 

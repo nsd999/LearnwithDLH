@@ -1,7 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { MapPin, Phone, Mail, Award, ArrowUpRight, Heart } from 'lucide-react';
-import { DLH_PHONE_NUMBER } from '@/lib/whatsapp';
+import { MapPin, Phone, Mail, Award, ArrowUpRight, Heart, ExternalLink } from 'lucide-react';
+import { 
+  DLH_PHONE_NUMBER, 
+  DLH_SECONDARY_PHONE_NUMBER, 
+  DLH_EMAIL, 
+  DLH_GOOGLE_MAPS_LOCATION 
+} from '@/lib/whatsapp';
 
 export default function Footer() {
   return (
@@ -57,21 +62,34 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-slate-400">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                <span>
-                  Champapet / Rakshapuram Main Road,<br />
-                  Hyderabad, Telangana 500079
-                </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-                <a href={`tel:+${DLH_PHONE_NUMBER}`} className="hover:text-white transition-colors font-medium">
-                  +91 90327 08241
+                <a
+                  href={DLH_GOOGLE_MAPS_LOCATION}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors flex items-start gap-1 group"
+                >
+                  <span>
+                    Champapet / Rakshapuram Main Road,<br />
+                    Hyderabad, Telangana 500079
+                  </span>
+                  <ExternalLink className="w-3.5 h-3.5 text-blue-400 group-hover:translate-x-0.5 transition-transform flex-shrink-0 mt-1" />
                 </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <Phone className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                <div className="flex flex-col gap-1">
+                  <a href={`tel:+${DLH_PHONE_NUMBER}`} className="hover:text-white transition-colors font-medium">
+                    +91 90327 08241
+                  </a>
+                  <a href={`tel:+${DLH_SECONDARY_PHONE_NUMBER}`} className="hover:text-white transition-colors font-medium">
+                    +91 63038 49852
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-amber-400 flex-shrink-0" />
-                <a href="mailto:info@dheeruslearnershub.com" className="hover:text-white transition-colors">
-                  info@dheeruslearnershub.com
+                <a href={`mailto:${DLH_EMAIL}`} className="hover:text-white transition-colors break-all">
+                  {DLH_EMAIL}
                 </a>
               </li>
             </ul>
