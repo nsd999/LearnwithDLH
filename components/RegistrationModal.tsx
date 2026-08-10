@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Course, Registration } from '@/types';
 import { X, CheckCircle, MessageSquare, Sparkles, Loader2 } from 'lucide-react';
 import { registerStudent } from '@/lib/supabase';
@@ -19,7 +19,28 @@ export default function RegistrationModal({ course, onClose }: RegistrationModal
   const [errors, setErrors] = useState<{ name?: string; phone?: string; email?: string }>({});
   const [registeredData, setRegisteredData] = useState<Registration | null>(null);
 
+  // Reset form and registration state whenever course changes
+  useEffect(() => {
+    if (course) {
+      setRegisteredData(null);
+      setName('');
+      setEmail('');
+      setPhone('');
+      setErrors({});
+      setLoading(false);
+    }
+  }, [course?.id]);
+
   if (!course) return null;
+
+  const handleCloseModal = () => {
+    setRegisteredData(null);
+    setName('');
+    setEmail('');
+    setPhone('');
+    setErrors({});
+    onClose();
+  };
 
   // AI Human Name Verification Helper
   const isPlausibleHumanName = (inputName: string): boolean => {
@@ -107,7 +128,7 @@ export default function RegistrationModal({ course, onClose }: RegistrationModal
       <div className="relative bg-white w-full max-w-lg rounded-3xl shadow-2xl p-6 sm:p-8 overflow-hidden">
         
         <button
-          onClick={onClose}
+          onClick={handleCloseModal}
           className="absolute top-4 right-4 p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
         >
           <X className="w-5 h-5" />
@@ -259,7 +280,7 @@ export default function RegistrationModal({ course, onClose }: RegistrationModal
               </button>
 
               <button
-                onClick={onClose}
+                onClick={handleCloseModal}
                 className="w-full py-2.5 text-xs text-slate-500 hover:text-slate-800 font-semibold"
               >
                 Done / Close Window
