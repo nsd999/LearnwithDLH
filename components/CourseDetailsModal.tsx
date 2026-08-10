@@ -26,7 +26,11 @@ export default function CourseDetailsModal({ course, onClose, onApply }: CourseD
           <img
             src={course.image_url}
             alt={course.name}
-            className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay"
+            className={`absolute inset-0 w-full h-full ${
+              course.image_url.includes('keerthy') || course.image_url.includes('logo')
+                ? 'object-contain p-6 bg-white opacity-95'
+                : 'object-cover opacity-40 mix-blend-overlay'
+            }`}
           />
           
           <button

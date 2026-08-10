@@ -98,11 +98,11 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} Dheeru's Learner's Hub & Keerthy's Daycare And Kindergarten. All rights reserved.</p>
 
           {/* NSD Creations Branding */}
-          <div className="flex items-center gap-2 mt-2 md:mt-0 opacity-80 hover:opacity-100 transition-opacity">
-            <img src="/nsd-logo.png" alt="NSD Creations" className="w-8 h-8 object-contain mix-blend-multiply" />
-            <span className="font-medium">
+          <div className="flex items-center gap-2.5 mt-2 md:mt-0 opacity-90 hover:opacity-100 transition-opacity">
+            <img src="/nsd-logo.png" alt="NSD Creations" className="h-9 w-auto object-contain drop-shadow-md" />
+            <span className="font-medium text-slate-400">
               Creatively Crafted by{' '}
-              <a href="https://tinyurl.com/nsd-creations" target="_blank" rel="noopener noreferrer" className="font-bold text-slate-200 hover:text-teal-400 transition-colors">
+              <a href="https://tinyurl.com/nsd-creations" target="_blank" rel="noopener noreferrer" className="font-bold text-amber-400 hover:text-amber-300 transition-colors">
                 NSD Creations
               </a>
             </span>
