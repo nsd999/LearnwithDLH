@@ -74,7 +74,7 @@ export default function Hero() {
             {/* Trust Metrics */}
             <div className="pt-8 border-t border-slate-800/80 grid grid-cols-3 gap-4 text-center lg:text-left">
               <div>
-                <div className="font-display text-2xl sm:text-3xl font-extrabold text-white">12+</div>
+                <div className="font-display text-2xl sm:text-3xl font-extrabold text-white">25+</div>
                 <div className="text-xs text-slate-400 font-medium">Years Experience</div>
               </div>
               <div>

@@ -83,7 +83,7 @@ export default function Footer() {
               Founder & Director
             </h4>
             <p className="text-sm text-slate-400 leading-relaxed mb-3">
-              Led by <strong className="text-slate-200">Kiranmayee Nalkari</strong>, certified freelance soft-skills and language trainer with 12+ years of educational experience.
+              Led by <strong className="text-slate-200">Kiranmayee Nalkari</strong>, certified freelance soft-skills and language trainer with 25+ years of educational experience.
             </p>
             <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/60">
               <p className="text-xs text-slate-300 italic">

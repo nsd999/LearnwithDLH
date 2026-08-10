@@ -75,7 +75,7 @@ export default function HomePage() {
                 </p>
 
                 <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                  Led by <strong>Kiranmayee Nalkari</strong>, a seasoned freelance soft-skills and activity trainer with over 12 years of experience, DLH provides structured phonics, handwriting improvement, language fluency, memory expansion, fine arts, and daycare.
+                  Led by <strong>Kiranmayee Nalkari</strong>, a seasoned freelance soft-skills and activity trainer with over 25+ years of experience, DLH provides structured phonics, handwriting improvement, language fluency, memory expansion, fine arts, and daycare.
                 </p>
 
                 {/* Key Highlights */}
@@ -134,6 +134,95 @@ export default function HomePage() {
                     className="rounded-2xl shadow-md w-full h-48 sm:h-60 object-cover"
                   />
                 </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* 2.1 VISIONARY SECTION: KIRANMAYEE NALKARI */}
+        <section className="py-16 sm:py-24 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white relative overflow-hidden border-b border-slate-800">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              
+              {/* Left Image Card with Floating Badge Top Right */}
+              <div className="lg:col-span-5 relative group">
+                <div className="relative rounded-3xl overflow-hidden border-2 border-amber-500/40 shadow-2xl shadow-amber-900/30 bg-slate-800">
+                  
+                  {/* Floating Badge Top Right */}
+                  <div className="absolute top-4 right-4 z-20 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 px-4 py-2 rounded-xl shadow-xl border border-amber-300/80 font-extrabold text-xs tracking-wider uppercase flex items-center gap-2 transform hover:scale-105 transition-all duration-300 cursor-pointer">
+                    <Sparkles className="w-4 h-4 text-slate-950 fill-current" />
+                    <span>25+ Years of Experience</span>
+                  </div>
+
+                  {/* Founder Photo without background removal */}
+                  <img
+                    src="/kiranmayee-nalkari.jpg"
+                    alt="Mrs. Kiranmayee Nalkari - Founder & Director of Dheeru's Learner's Hub"
+                    className="w-full h-[440px] sm:h-[480px] object-cover object-top transition-transform duration-500 group-hover:scale-102"
+                  />
+
+                  {/* Bottom Overlay Label */}
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-900/90 to-transparent p-6 pt-12">
+                    <h3 className="font-display text-2xl font-extrabold text-white">
+                      Mrs. Kiranmayee Nalkari
+                    </h3>
+                    <p className="text-amber-400 text-xs font-semibold uppercase tracking-wider mt-0.5">
+                      Founder & Lead Educator • DLH & Keerthy's Daycare
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Bio & Google-fetched details */}
+              <div className="lg:col-span-7 space-y-6">
+                
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-300 text-xs font-bold uppercase tracking-wider">
+                  <Award className="w-4 h-4 text-amber-400" />
+                  The Visionary Behind DLH
+                </div>
+
+                <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                  Empowering Generations of Learners Under <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-sky-300 to-emerald-400">Expert Guidance</span>
+                </h2>
+
+                <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+                  Led by <strong>Mrs. Kiranmayee Nalkari</strong>, a distinguished freelance soft-skills master trainer, language coach, and child educationist based in Champapet, Hyderabad. With a rich legacy spanning <strong>over 25+ years in education</strong>, she has pioneered activity-based learning methodologies that transform student confidence.
+                </p>
+
+                {/* Expertise Highlights */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-200">
+                  <div className="flex items-center gap-2.5 bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/60">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <span>Jolly Phonics & Sound Phonetics Specialist</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/60">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <span>Cursive Handwriting & Speed Writing Master</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/60">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <span>Soft Skills & Multilingual Language Trainer</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/60">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <span>Brain Gym, Concentration & Memory Retention</span>
+                  </div>
+                </div>
+
+                {/* Visionary Quote Box */}
+                <div className="p-5 rounded-2xl bg-gradient-to-r from-slate-800/90 to-blue-950/90 border border-slate-700/70 shadow-inner space-y-2">
+                  <p className="text-sm sm:text-base text-slate-200 italic leading-relaxed">
+                    "Every learner holds limitless potential when guided with patience, structured activities, and joyful practice."
+                  </p>
+                  <div className="text-xs font-bold text-amber-400 tracking-wide uppercase">
+                    — Kiranmayee Nalkari, Founder & Director
+                  </div>
+                </div>
+
               </div>
 
             </div>
