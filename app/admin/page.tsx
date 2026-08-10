@@ -74,14 +74,14 @@ export default function AdminPage() {
                   <input
                     type="password"
                     required
-                    placeholder="Enter Passcode (e.g. dlh2026)"
+                    placeholder="Enter Passcode"
                     value={pin}
                     onChange={(e) => setPin(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-slate-300 text-center font-mono text-lg text-slate-900 tracking-widest focus:outline-none focus:ring-2 focus:ring-blue-600"
                   />
                   {error && (
                     <div className="text-xs font-bold text-red-600 mt-2">
-                      Incorrect passcode. Try <code>dlh2026</code>
+                      Incorrect passcode. Access denied.
                     </div>
                   )}
                 </div>
@@ -94,10 +94,6 @@ export default function AdminPage() {
                   Unlock Admin Dashboard
                 </button>
               </form>
-
-              <div className="p-3 bg-slate-50 rounded-xl text-[11px] text-slate-500 border border-slate-200">
-                Demo Admin Passcode: <strong className="text-slate-800 font-mono">dlh2026</strong>
-              </div>
             </div>
           ) : (
             /* Admin Table Component */

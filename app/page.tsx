@@ -285,15 +285,44 @@ export default function HomePage() {
                 Loading programs from database...
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredCourses.map((course) => (
-                  <CourseCard
-                    key={course.id}
-                    course={course}
-                    onLearnMore={(c) => setDetailCourse(c)}
-                    onRegister={(c) => setRegisterCourse(c)}
-                  />
-                ))}
+              <div className="space-y-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {filteredCourses.slice(0, 6).map((course) => (
+                    <CourseCard
+                      key={course.id}
+                      course={course}
+                      onLearnMore={(c) => setDetailCourse(c)}
+                      onRegister={(c) => setRegisterCourse(c)}
+                    />
+                  ))}
+                </div>
+
+                {/* "And Many More..." Card Leading to /courses */}
+                <div className="text-center pt-4">
+                  <Link
+                    href="/courses"
+                    className="group inline-flex flex-col sm:flex-row items-center justify-between gap-6 bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 text-white p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl border border-blue-700/50 hover:border-amber-400/80 transition-all transform hover:-translate-y-1 w-full max-w-4xl mx-auto"
+                  >
+                    <div className="flex items-center gap-4 text-left">
+                      <div className="p-3.5 rounded-2xl bg-amber-500/20 text-amber-400 border border-amber-400/30 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <Sparkles className="w-7 h-7" />
+                      </div>
+                      <div>
+                        <div className="font-display font-extrabold text-xl sm:text-2xl text-white">
+                          And Many More Programs & Skill Modules...
+                        </div>
+                        <div className="text-xs sm:text-sm text-blue-200 mt-1">
+                          Explore our full catalog of 13+ specialized modules including Public Speaking, Time Management, Creative Writing, Neurogym & Teacher Training.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm px-6 py-3 rounded-full shadow-md flex-shrink-0 group-hover:translate-x-1 transition-transform">
+                      View All Courses
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </Link>
+                </div>
               </div>
             )}
 

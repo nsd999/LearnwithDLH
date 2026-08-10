@@ -27,10 +27,10 @@ export default function Navbar() {
             <Link href="/" className="hover:text-blue-600 transition-colors">
               Home
             </Link>
-            <a href="#courses" className="hover:text-blue-600 transition-colors flex items-center gap-1.5">
+            <Link href="/courses" className="hover:text-blue-600 transition-colors flex items-center gap-1.5">
               <BookOpen className="w-4 h-4 text-blue-500" />
               Programs & Courses
-            </a>
+            </Link>
             <a href="#about" className="hover:text-blue-600 transition-colors">
               About DLH
             </a>
@@ -40,10 +40,6 @@ export default function Navbar() {
             <Link href="/verify" className="hover:text-blue-600 transition-colors flex items-center gap-1.5 font-semibold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200">
               <Award className="w-4 h-4 text-emerald-600" />
               Verify Certificate
-            </Link>
-            <Link href="/admin" className="hover:text-blue-600 transition-colors flex items-center gap-1.5 text-slate-500 hover:text-slate-900">
-              <Shield className="w-4 h-4" />
-              Admin
             </Link>
           </nav>
 
@@ -102,14 +98,6 @@ export default function Navbar() {
           >
             <Award className="w-5 h-5" />
             Verify Certificate
-          </Link>
-          <Link
-            href="/admin"
-            onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center gap-2 py-2 text-base font-medium text-slate-600"
-          >
-            <Shield className="w-5 h-5" />
-            Admin Portal
           </Link>
           <div className="pt-2">
             <a

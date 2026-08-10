@@ -53,7 +53,7 @@ const INITIAL_MOCK_REGISTRATIONS: Registration[] = [
   }
 ];
 
-const LOCAL_STORAGE_KEY_COURSES = 'dlh_courses_data_v1';
+const LOCAL_STORAGE_KEY_COURSES = 'dlh_courses_data_v4';
 const LOCAL_STORAGE_KEY_REGS = 'dlh_registrations_data_v1';
 
 // Helper functions for Data Operations
