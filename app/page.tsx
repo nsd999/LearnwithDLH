@@ -163,7 +163,7 @@ export default function HomePage() {
                   <img
                     src="/kiranmayee-nalkari.jpg"
                     alt="Mrs. Kiranmayee Nalkari - Founder & Director of Dheeru's Learner's Hub"
-                    className="w-full h-[440px] sm:h-[480px] object-cover object-top transition-transform duration-500 group-hover:scale-102"
+                    className="w-full h-[340px] sm:h-[440px] lg:h-[480px] object-cover object-top transition-transform duration-500 group-hover:scale-102"
                   />
 
                   {/* Bottom Overlay Label */}

@@ -77,12 +77,19 @@ export default function MeetTheFounderPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
               
               {/* Founder Image Card */}
-              <div className="lg:col-span-5 relative sticky top-24">
-                <div className="rounded-3xl overflow-hidden border-2 border-amber-500/30 shadow-2xl bg-slate-900 relative">
+              <div className="lg:col-span-5 relative lg:sticky lg:top-24 mb-6 lg:mb-0 transition-all duration-300">
+                <div className="rounded-3xl overflow-hidden border-2 border-amber-500/40 shadow-2xl bg-slate-900 relative group">
+                  
+                  {/* Floating Badge Top Right */}
+                  <div className="absolute top-4 right-4 z-20 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 px-3.5 py-1.5 rounded-xl shadow-xl border border-amber-300/80 font-extrabold text-[11px] sm:text-xs tracking-wider uppercase flex items-center gap-1.5 transform hover:scale-105 transition-all duration-300">
+                    <Sparkles className="w-3.5 h-3.5 text-slate-950 fill-current" />
+                    <span>25+ Years of Experience</span>
+                  </div>
+
                   <img
                     src="/kiranmayee-nalkari.jpg"
                     alt="Mrs. Kiranmayee Nalkari"
-                    className="w-full h-[450px] object-cover object-top"
+                    className="w-full h-[340px] sm:h-[420px] lg:h-[450px] object-cover object-top transition-transform duration-500 group-hover:scale-102"
                   />
                   <div className="p-6 bg-slate-900 text-white space-y-2">
                     <div className="font-display font-extrabold text-2xl text-white">
