@@ -52,24 +52,30 @@ function VerifyContent() {
     setDownloading(true);
 
     try {
-      const canvas = await html2canvas(certRef.current, {
+      const element = certRef.current;
+      
+      const canvas = await html2canvas(element, {
         scale: 3, // High definition output
         useCORS: true,
+        allowTaint: true,
         logging: false,
         backgroundColor: '#ffffff',
+        scrollX: 0,
+        scrollY: -window.scrollY, // Compensate for window scroll position
+        x: 0,
+        y: 0,
+        width: element.offsetWidth,
+        height: element.offsetHeight,
       });
 
-      const imgData = canvas.toDataURL('image/png');
+      const imgData = canvas.toDataURL('image/png', 1.0);
       const pdf = new jsPDF({
         orientation: 'landscape',
-        unit: 'mm',
-        format: 'a4',
+        unit: 'px',
+        format: [850, 600],
       });
 
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      pdf.addImage(imgData, 'PNG', 0, 0, 850, 600, undefined, 'FAST');
       pdf.save(`DLH_Certificate_${record.dlh_id}_${record.student_name.replace(/\s+/g, '_')}.pdf`);
     } catch (err) {
       console.error('Failed to render PDF certificate:', err);

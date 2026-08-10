@@ -16,7 +16,7 @@ export const CertificateTemplate = forwardRef<HTMLDivElement, CertificateTemplat
       <div className="w-full overflow-x-auto flex justify-center p-2 sm:p-4 bg-slate-900/5 rounded-2xl">
         <div
           ref={ref}
-          className="relative w-[850px] h-[600px] bg-white text-slate-900 p-10 flex flex-col justify-between shadow-2xl border-[12px] border-amber-600 rounded-none overflow-hidden select-none font-sans"
+          className="relative w-[850px] h-[600px] bg-white text-slate-900 p-8 pt-6 flex flex-col justify-between shadow-2xl border-[12px] border-amber-600 rounded-none overflow-hidden select-none font-sans box-border"
           style={{
             backgroundImage: `radial-gradient(circle at center, #ffffff 0%, #fffdf8 100%)`,
           }}
@@ -34,17 +34,11 @@ export const CertificateTemplate = forwardRef<HTMLDivElement, CertificateTemplat
           {/* Header & Logo */}
           <div className="text-center relative z-10 space-y-2 pt-2">
             <div className="inline-flex items-center justify-center gap-2 mb-1">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-900 to-indigo-700 flex items-center justify-center text-white font-extrabold text-sm shadow-md">
-                DLH
-              </div>
-              <div className="text-left">
-                <span className="font-display font-extrabold text-lg tracking-tight text-blue-950 block leading-none">
-                  Dheeru's Learner's Hub
-                </span>
-                <span className="text-[10px] font-semibold text-amber-700 uppercase tracking-widest block mt-0.5">
-                  Champapet • Hyderabad
-                </span>
-              </div>
+              <img
+                src="/dlh-full-logo.png"
+                alt="Dheeru's Learner's Hub Logo"
+                className="h-16 w-auto object-contain"
+              />
             </div>
 
             <div className="uppercase tracking-[0.3em] text-xs font-bold text-amber-600 pt-2">
