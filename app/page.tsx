@@ -223,6 +223,18 @@ export default function HomePage() {
                   </div>
                 </div>
 
+                {/* CTA to /meet-the-founder */}
+                <div className="pt-2">
+                  <Link
+                    href="/meet-the-founder"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm px-6 py-3 rounded-full shadow-lg shadow-amber-500/20 transition-all transform hover:-translate-y-0.5"
+                  >
+                    <BookOpen className="w-4 h-4" />
+                    Know More About Founder & Qualifications
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+
               </div>
 
             </div>

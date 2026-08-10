@@ -34,6 +34,9 @@ export default function Navbar() {
             <a href="#about" className="hover:text-blue-600 transition-colors">
               About DLH
             </a>
+            <Link href="/meet-the-founder" className="hover:text-blue-600 transition-colors">
+              Meet the Founder
+            </Link>
             <Link href="/verify" className="hover:text-blue-600 transition-colors flex items-center gap-1.5 font-semibold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200">
               <Award className="w-4 h-4 text-emerald-600" />
               Verify Certificate
