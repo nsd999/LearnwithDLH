@@ -3,7 +3,7 @@ import { Course } from '@/types';
 export const INITIAL_COURSES: Course[] = [
   {
     id: 'course-phonics',
-    name: 'Jolly Phonics & Reading Mastery',
+    name: 'DLH Phonics & Reading Mastery',
     shortcode: 'PHON',
     category: 'Languages',
     badge: 'Most Popular',

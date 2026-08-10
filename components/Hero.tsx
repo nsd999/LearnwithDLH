@@ -28,7 +28,7 @@ export default function Hero() {
 
             {/* Subtitle */}
             <p className="text-slate-300 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Welcome to <strong className="text-white">Dheeru's Learner's Hub (DLH)</strong>. We provide expert-led Jolly Phonics, Cursive Handwriting, Spoken Languages, Brain Gym & Wellness, Creative Arts, and Daycare for children, teens, and adults.
+              Welcome to <strong className="text-white">Dheeru's Learner's Hub (DLH)</strong>. We provide expert-led DLH Phonics, Cursive Handwriting, Spoken Languages, Brain Gym & Wellness, Creative Arts, and Daycare for children, teens, and adults.
             </p>
 
             {/* Quick Benefits List */}
@@ -105,7 +105,7 @@ export default function Hero() {
                   </div>
                   <div>
                     <h4 className="font-display font-bold text-white text-sm">
-                      Jolly Phonics & Brain Gym
+                      DLH Phonics & Brain Gym
                     </h4>
                     <p className="text-xs text-slate-300">
                       Guided by Kiranmayee Nalkari • Hyderabad

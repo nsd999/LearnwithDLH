@@ -45,7 +45,7 @@ export default function Footer() {
               Programs & Activities
             </h4>
             <ul className="space-y-2.5 text-sm text-slate-400">
-              <li><a href="#courses" className="hover:text-blue-400 transition-colors">Jolly Phonics & Reading</a></li>
+              <li><a href="#courses" className="hover:text-blue-400 transition-colors">DLH Phonics & Reading</a></li>
               <li><a href="#courses" className="hover:text-blue-400 transition-colors">Cursive Handwriting Mastery</a></li>
               <li><a href="#courses" className="hover:text-blue-400 transition-colors">Spoken English & Public Speaking</a></li>
               <li><a href="#courses" className="hover:text-blue-400 transition-colors">Brain Gym & Memory Techniques</a></li>

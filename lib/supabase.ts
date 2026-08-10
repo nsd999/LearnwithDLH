@@ -19,7 +19,7 @@ const INITIAL_MOCK_REGISTRATIONS: Registration[] = [
     email: 'ananya.sharma@example.com',
     phone: '+91 98765 43210',
     course_id: 'course-phonics',
-    course_name: 'Jolly Phonics & Reading Mastery',
+    course_name: 'DLH Phonics & Reading Mastery',
     course_shortcode: 'PHON',
     dlh_id: '2026-PHON-001',
     status: 'completed',
@@ -96,13 +96,19 @@ export async function getCourses(): Promise<Course[]> {
     coursesList = INITIAL_COURSES;
   }
 
-  // Ensure latest Keerthy's Daycare And Kindergarten name & logo across any cached or DB rows
+  // Ensure latest Keerthy's Daycare And Kindergarten and DLH Phonics names across any cached or DB rows
   return coursesList.map(c => {
     if (c.id === 'course-daycare' || c.shortcode === 'CARE' || c.name.toLowerCase().includes('keerthy') || c.name.toLowerCase().includes('daycare')) {
       return {
         ...c,
         name: "Keerthy's Daycare And Kindergarten",
         image_url: "/keerthys-daycare-logo.png"
+      };
+    }
+    if (c.id === 'course-phonics' || c.shortcode === 'PHON' || c.name.toLowerCase().includes('phonics')) {
+      return {
+        ...c,
+        name: "DLH Phonics & Reading Mastery"
       };
     }
     return c;

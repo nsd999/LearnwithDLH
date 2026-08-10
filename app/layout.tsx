@@ -3,7 +3,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: "Dheeru's Learner's Hub (DLH) — Phonics, Handwriting & Keerthy's Daycare And Kindergarten",
-  description: "Dheeru's Learner's Hub offers Jolly Phonics, Cursive Handwriting, Spoken English, Brain Gym & Memory, Creative Arts, and Keerthy's Daycare And Kindergarten in Champapet, Hyderabad. Verified digital credentialing platform.",
+  description: "Dheeru's Learner's Hub offers DLH Phonics, Cursive Handwriting, Spoken English, Brain Gym & Memory, Creative Arts, and Keerthy's Daycare And Kindergarten in Champapet, Hyderabad. Verified digital credentialing platform.",
   keywords: ["Dheeru's Learner's Hub", "DLH Champapet", "Phonics classes Hyderabad", "Handwriting course Hyderabad", "Keerthy's Daycare And Kindergarten", "Kiranmayee Nalkari", "LMS", "Certificate verification"],
   icons: {
     icon: '/icon.png',

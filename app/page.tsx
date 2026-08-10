@@ -123,7 +123,7 @@ export default function HomePage() {
 
                 <div className="space-y-4 pt-6">
                   <div className="p-5 rounded-2xl bg-emerald-700 text-white space-y-2">
-                    <div className="font-display font-bold text-xl">Jolly Phonics</div>
+                    <div className="font-display font-bold text-xl">DLH Phonics</div>
                     <div className="text-xs text-emerald-100">
                       Sound-action reading methods transforming early English literacy.
                     </div>
@@ -197,7 +197,7 @@ export default function HomePage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-200">
                   <div className="flex items-center gap-2.5 bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/60">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                    <span>Jolly Phonics & Sound Phonetics Specialist</span>
+                    <span>DLH Phonics & Sound Phonetics Specialist</span>
                   </div>
                   <div className="flex items-center gap-2.5 bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/60">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
